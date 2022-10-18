@@ -1,7 +1,7 @@
-const config = require('./connection')
+const connection = require('./config')
 
 const create = async (name) => {
-  const [result] = await config.execute(
+  const [result] = await connection.execute(
       `INSERT INTO people (name) VALUES (?)`,
       [name]
   );

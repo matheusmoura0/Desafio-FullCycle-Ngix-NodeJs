@@ -3,9 +3,9 @@ const mysql = require ('mysql2/promise');
 require('dotenv').config();
 
 const connection = mysql.createPool({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
+  host: 'localhost',
+  user: 'root',
+  password: 9193999,
   database: 'FullCycle',
 });
 
