@@ -5,7 +5,7 @@ app.use(express.json());
 
 
 app.get("/", (req, res) => {
-  res.json({ message: 'server rodando'});
+  res.json({ message: 'Full Cycle Rocks!'});
 });
 
 app.listen(port, () => {
