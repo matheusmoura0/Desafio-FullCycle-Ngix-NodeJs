@@ -5,8 +5,8 @@ require('dotenv').config();
 const connection = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 9193999,
-  database: 'FullCycle',
+  password: '9193999',
+  database: 'FullCycleDB',
 });
 
 module.exports = connection

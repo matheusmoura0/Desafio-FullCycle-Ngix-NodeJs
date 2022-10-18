@@ -2,13 +2,12 @@ const express = require("express");
 const app = express();
 const axios = require('axios');
 const port = 3000;
+const connection = require('./model/config')
 app.use(express.json());
 
 
 
-app.get("/", (req, res) => {
-  res.json({ message: 'Full Cycle Rocks!'});
-});
+
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta: ${port}`);
@@ -16,7 +15,19 @@ app.listen(port, () => {
 
 const getRandomNames = async () => { 
   const { data } = await axios.get('https://randomuser.me/api/?results=1');
-   return data.results.map(({ name }) => name.first);
+    const  names = data.results.map(({ name }) => name.first);
+    const formated = names[0]
+    return formated
+}
+const insertRandomNames = async (res) => { 
+  const names = await getRandomNames();
+  const query = `INSERT INTO people (name) VALUES (?)`;
+  const [result] = await connection.execute(query, [names]);
+  console.log('entrou')
+  return result;
 }
 
-getRandomNames();
+app.get("/", (req, res) => {
+  insertRandomNames(res);
+  res.json({ message: 'Full Cycle Rocks!'});
+});
