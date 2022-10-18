@@ -29,5 +29,14 @@ const insertRandomNames = async (res) => {
 
 app.get("/", (req, res) => {
   insertRandomNames(res);
-  res.json({ message: 'Full Cycle Rocks!'});
+  res.json({ message: `Full Cycle Rocks!`});
 });
+
+const getListOfNames = async () => { 
+  const query = `SELECT * FROM people`;
+  const [result] = await connection.execute(query);
+  console.log(result)
+  return result;
+}
+
+getListOfNames();
