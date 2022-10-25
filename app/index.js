@@ -3,6 +3,27 @@ const app = express();
 
 const port = 3000;
 
+const mysql = require ('mysql2/promise');
+
+
+const connection = mysql.createPool({
+    host: 'db',
+    user: 'root',
+    password: 'password',
+    database: 'FullCycleDB',
+  });
+
+
+
+
+const initdb  = `
+CREATE TABLE IF NOT EXISTS people (
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+    );`
+
+connection.query(initdb);
 
 
 app.use(express.json());
