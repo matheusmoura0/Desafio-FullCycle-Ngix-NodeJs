@@ -1,5 +1,15 @@
 const axios = require('axios');
 
+const mysql = require ('mysql2/promise');
+
+
+const connection = mysql.createPool({
+    host: 'db',
+    user: 'root',
+    password: 'password',
+    database: 'FullCycleDB',
+  });
+
 const getRandomNames = async () => { 
     const { data } = await axios.get('https://randomuser.me/api/?results=1');
     const  names = data.results.map(({ name }) => name.first);
